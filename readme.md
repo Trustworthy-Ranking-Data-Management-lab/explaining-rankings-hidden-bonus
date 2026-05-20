@@ -1,3 +1,7 @@
+## Introduction
+
+This repository has the code for the paper Explaining Rankings with Hidden Group Bonuses. See the following for some information on how to run it, and about the codebase if you want to use and modify it.
+
 ## Synthetic data generation
 Synthetic data can be generated using the files in the folder synthetic.
 The file `generate_additive.py` constructs instances of g-GBLR, and takes in command line arguments to determine the size of the instance, in the order n, d, k, g. The number of points given an additive bonus is equal to k * n, so k should be a floating point value between 0.0 to 1.0.
