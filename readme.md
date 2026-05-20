@@ -1,3 +1,7 @@
+## Introduction
+
+This repository has the code for the paper Explaining Rankings with Hidden Group Bonuses. See the following for some information on how to run it, and about the codebase if you want to use and modify it.
+
 ## Synthetic data generation
 Synthetic data can be generated using the files in the folder synthetic.
 The file `generate_additive.py` constructs instances of g-GBLR, and takes in command line arguments to determine the size of the instance, in the order n, d, k, g. The number of points given an additive bonus is equal to k * n, so k should be a floating point value between 0.0 to 1.0.
@@ -10,14 +14,18 @@ As an example, `python generate_arbitrary.py 5000 5 0.1` generates an instance o
 
 The output is written to a file in the same directory, with the parameters contained in the filename.
 
+The similar is for `generate_zipf_additive.py` and `generate_zipf_arbitrary.py`, except that these generate from a zipfian distribution instead.
+
+The seed is fixed; to allow reproducibility.
+
 ## JEE Data
 The JEE dataset is found in the folder JEE.
 
-The raw data is found in `jee2009.csv`, and the preprocessed data which has removed the unused attributes and candidates with missing attributes in `jee.in`. 
+The raw data is found in `jee2009.csv`, and the preprocessed data file which has removed the unused attributes and candidates with missing attributes in `jee.in`. 
 
 To generate instances of different `n`, run `jeecreate.py` with the desired value of `n` as command line argument. For example, for 50000 tuples, `jeecreate.py 50000`. 
 
-Note that to create instances with only one group, edit the `jeecreate.py` file and set GENDER = True instead of False as it is.
+Note that to create instances with only one group, edit the `jeecreate.py` file and set CATEGORY = False instead of True.
 
 
 ## Solver code
@@ -37,11 +45,18 @@ The file `ilp_refined.py` is to solve g-GBLR with the ILPrefined formulation.
 
 The file `ilp_refined_singleton.py` is to solve SGBLR with the ILPrefined formulation.
 
+The file `ordinal_regression.py` is to solve any instance of the problems with ordinal regression. 
+
+The file `logistic_regression.py` is to solve any instance of the problems with logistic regression.
+
 Python files with the name format `*_functions.py` are intended to be compiled with mypyc for speedup; however the code will still work without this.
 
 ## Usage
 
-First, pip install according to the `requirements.txt` file. Note that you will require a Gurobi license (academic or otherwise) set up to be able to run the experiments. 
+First, pip install according to the `requirements.txt` file. Most important is gurobipy (At least version 13 preferred) and numpy.
+Note that you will require a Gurobi license (academic or otherwise) set up to be able to run the experiments. See [their website](https://www.gurobi.com/academics) for information on free licenses.
+
+Optionally, files such as `ermb_functions.py` should be compiled once via running `mypyc ermb_functions.py` to get a closer running time to our experiments.
 
 For all of the solution python files, the input should be given from stdin.
 So for an example with a synthetic data input, run `python ilp_refined.py < synthetic\1group_10000_2_0.1.txt`
@@ -51,7 +66,3 @@ The first line should be a line containing `n`, followed by `g` integers represe
 The next `n` lines consist of `d` values separated by a space. The ith line represents the attributes of the ith point.
 
 Finally, `n` more lines follow. Each line should consist of two integers, first the point, then a space, then its rank.
-
-For `onegroup_unknown.py` and `multigroup_unknown.py`, one additional line should follow, with the superset of points that are allowed to be given additive value, separated by spaces.
-
-Using them requires Gurobi for Python to be installed, and with an available license.
