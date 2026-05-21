@@ -124,7 +124,7 @@ if __name__ == "__main__":
             prev_val = val
             
         print("Points given additive bonus:", addedpts)
-        print(f"Final line, {NUM_DATA}, {DIM}, Singleton, {K}, {domcount}, ILPrefined, {round(timetaken,2)}, {addedpts}")
+        print(f"{NUM_DATA}, {DIM}, Singleton, {K}, {domcount}, ILPrefined, {round(timetaken,2)}, {addedpts}")
         print("------------ End of Algorithm run -----------")
         
     except gp.GurobiError as e:

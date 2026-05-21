@@ -277,5 +277,5 @@ if __name__ == '__main__':
     # Call the new parallel function
     sol = search_hyperplanes_parallel(planes, points, mapping, K)
     timetaken = time.time() - startTime
-    print(f"Final line, {NUM_DATA}, {DIM}, Singleton, {K}, {dominated_count} , ERMB, {round(timetaken,2)}, {sol}")
+    print(f"{NUM_DATA}, {DIM}, Singleton, {K}, {dominated_count} , ERMB, {round(timetaken,2)}, {sol}")
     print("------------ End of Algorithm run -----------")

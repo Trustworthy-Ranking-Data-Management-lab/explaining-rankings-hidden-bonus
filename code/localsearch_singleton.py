@@ -87,5 +87,5 @@ if __name__ == '__main__':
     print("Best objective found:", sol)
     print("Weight vectors giving the best objective found:", optsols)
     timetaken = time.time() - startTime
-    print(f"Final line, {NUM_DATA}, {DIM}, Singleton, {K}, - No dominance - , Localsearch, {round(timetaken,2)}, {sol}")
+    print(f"{NUM_DATA}, {DIM}, Singleton, {K}, - No dominance - , Localsearch, {round(timetaken,2)}, {sol}")
     print("------------ End of Algorithm run -----------")

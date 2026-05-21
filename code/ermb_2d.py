@@ -99,5 +99,5 @@ if __name__ == '__main__':
     print("Time taken (s):", timetaken)
     print("Best objective found:", maximum)
     print("Weight vectors giving the solution:", optsols)
-    print(f"Final line, {NUM_DATA}, {DIM}, Singleton, {K}, {dominated_count} , ERMB, {round(timetaken,2)}, {maximum}")
+    print(f"{NUM_DATA}, {DIM}, Singleton, {K}, {dominated_count} , ERMB, {round(timetaken,2)}, {maximum}")
     print("------------ End of Algorithm run -----------")

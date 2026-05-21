@@ -196,5 +196,5 @@ if __name__ == "__main__":
     print(len(addvals))
 
     print(f"Time taken: {timetaken:.4f} seconds")
-    print(f"Final line, {NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, -- Dominance ignored --, Logistic Regression, {timetaken}, {addedpts}, {len(addvals)}")
+    print(f"{NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, -- Dominance ignored --, Logistic Regression, {timetaken}, {addedpts}, {len(addvals)}")
     print("------------ End of Algorithm run -----------")

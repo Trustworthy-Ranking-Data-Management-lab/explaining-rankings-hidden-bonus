@@ -134,5 +134,5 @@ if __name__ == "__main__":
         print("------------ End of Algorithm run -----------")
     except gp.GurobiError as e:
         print(f"Error code {e.errno}: {e}")
-        print(f"Final line, {NUM_DATA}, {DIM}, Singleton, {K}, {domcount}, ILPbase, {round(timetaken,2)}, {1000000000}")
+        print(f"{NUM_DATA}, {DIM}, Singleton, {K}, {domcount}, ILPbase, {round(timetaken,2)}, {1000000000}")
         print("------------ End of Algorithm run -----------")

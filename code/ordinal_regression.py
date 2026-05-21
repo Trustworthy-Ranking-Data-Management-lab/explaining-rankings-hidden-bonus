@@ -130,5 +130,5 @@ if __name__ == "__main__":
     timetaken = time.time() - start_time
 
     print(f"Time taken: {timetaken:.4f} seconds")
-    print(f"Final line, {NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, -- Dominance ignored --, Linear Regression, {timetaken}, {addedpts}")
+    print(f"{NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, -- Dominance ignored --, Linear Regression, {timetaken}, {addedpts}")
     print("------------ End of Algorithm run -----------")

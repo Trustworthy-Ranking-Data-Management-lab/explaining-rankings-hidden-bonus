@@ -166,9 +166,9 @@ if __name__ == "__main__":
         print("Group sizes:", gsizes)
         addedpts = sum(gsizes)
         print("Points given additive bonus:", addedpts)
-        print(f"Final line, {NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, {domcount}, ILPrefined, {round(timetaken,2)}, {addedpts}")
+        print(f"{NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, {domcount}, ILPrefined, {round(timetaken,2)}, {addedpts}")
         print("------------ End of Algorithm run -----------")
     except gp.GurobiError as e:
         print(f"Error code {e.errno}: {e}")
-        print(f"Final line, {NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, {domcount}, ILPrefined, {round(timetaken,2)}, {1000000000}")
+        print(f"{NUM_DATA}, {DIM}, {NUM_GROUP}, {K}, {domcount}, ILPrefined, {round(timetaken,2)}, {1000000000}")
         print("------------ End of Algorithm run -----------")
