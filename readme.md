@@ -20,9 +20,7 @@ generates an instance of 5000 tuples with 5 dimensional features, with 500 tuple
 
 The output is written to a file in the same directory, with the parameters contained in the filename.
 
-Similarly, `generate_zipf_additive.py` and `generate_zipf_arbitrary.py`, can be used to generate datasets from a Zipfian distribution instead.
-
-***** TODO:::::Add a brief description of how these 2 files differ in the output. ****
+The files `generate_additive.py` and `generate_arbitrary.py` generate data from a uniform distribution over the weights and tuple attributes. The files `generate_zipf_additive.py` and `generate_zipf_arbitrary.py` can be used to generate data where the weights and from a Zipfian distribution instead; the usage is identical to that described above.
 
 The seed is fixed to allow reproducibility.
 
@@ -35,7 +33,7 @@ The raw data is found in `jee2009.csv`, and the preprocessed data file, which ha
 To generate instances of different `n`, run `jeecreate.py` with the desired value of `n` as command line argument. For example, for 50000 tuples, one can run the command 
 
 ```bash
-jeecreate.py 50000
+python jeecreate.py 50000
 ```
 
 Note that to create instances with only one group, edit the `jeecreate.py` file and modify the code to set `CATEGORY = False` instead of `True`.
@@ -43,8 +41,7 @@ Note that to create instances with only one group, edit the `jeecreate.py` file 
 
 ## Solver code
 
-***** TODO:::::Show one line usage for each of the methods below. If there are any parameters describe it****
-
+All solver code takes in input from standard input, and writes to standard output, and does not take any command line parameters. See Usage/Running code for a simple example of how to create a synthetic dataset and run it.
 
 The file `ermb_2d.py` is to solve SGBLR using the ERMB algorithm. Note that it functions only for 2-dimensional input as it exploits specific properties to allow a 1-dimensional search, which is faster.
 
@@ -70,14 +67,33 @@ Python files with the name format `*_functions.py` are intended to be compiled w
 
 ## Usage
 
+### Setup
 First, pip install according to the `requirements.txt` file. Most important is `gurobipy` (version 13 or more preferred) and `numpy`.
 Note that you will require a Gurobi license (academic or otherwise) set up to be able to run the experiments. See [their website](https://www.gurobi.com/academics) for information on free licenses.
 
 Optionally, files such as `ermb_functions.py` should be compiled once by running `mypyc ermb_functions.py` to get a closer running time to our experiments.
 
-For all of the solution Python files, the input should be given from stdin.
-So, for example, with a synthetic data input, run `python ilp_refined.py < synthetic\1group_10000_2_0.1.txt`
+### Running code
 
+For all of the Python files to run a solving method, the input should be given from stdin.
+
+An example of how to create a synthetic dataset of 1-GBLR with $n = 10000, d = 2, k = 1000$ and run it. All solver codes function similarly, so to run ILPbase, simply replace `ilp_refined.py` with `ilp_base.py`.
+
+```bash
+python synthetic/generate_additive.py 10000 2 0.1 1
+python code/ilp_refined.py < 1group_10000_2_0.1.txt
+```
+
+```bash
+cd JEE
+python jee_create.py 50000
+cd ..
+python code/ilp_refined.py < JEE/jee_50000.in
+```
+
+Outputs are written to standard output.
+
+## Creating your own input instances
 If using with other input, the general input format expected is as follows
 The first line should be a line containing `n`, followed by `g` integers representing the size of each group.
 The next `n` lines consist of `d` values separated by a space. The ith line represents the attributes of the ith point.
