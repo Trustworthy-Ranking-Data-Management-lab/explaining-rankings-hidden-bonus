@@ -20,6 +20,8 @@ if len(sys.argv) > 1:
 CATEGORY = True
 
 with open("jee.in") as f:
+
+    outputfile = open(f"jee_{LIMIT}.txt", "w")
     
     lines = f.readlines()
     lines = [line.strip().split() for line in lines]
@@ -73,23 +75,23 @@ with open("jee.in") as f:
     rankings.sort(key=lambda x: x[0], reverse=True)
 
     if CATEGORY == False:
-        print(len(rankings), added)
+        print(len(rankings), added, file=outputfile)
     else:
-        print(len(rankings), added_2group[0], added_2group[1])
+        print(len(rankings), added_2group[0], added_2group[1], file=outputfile)
     for l in lines[:LIMIT]:
         if CATEGORY == False:
-            print(*l[2:6])
+            print(*l[2:6], file=outputfile)
         else:
-            print(l[0], *l[2:6])
+            print(l[0], *l[2:6], file=outputfile)
     rank = 1
     ties = 1
-    print(rankings[0][1], rank, 1 if 0 in privset else 0)
+    print(rankings[0][1], rank, 1 if 0 in privset else 0, file=outputfile)
     for i in range(1, len(rankings)):
         if rankings[i-1][0] - rankings[i][0] <= 1e-2:
             ties += 1
         else:
             rank += ties
             ties = 1
-        print(rankings[i][1], rank, 1 if i in privset else 0)
+        print(rankings[i][1], rank, 1 if i in privset else 0, file=outputfile)
 
     addlist = [i for i in range(len(lines)) if i not in privset]
